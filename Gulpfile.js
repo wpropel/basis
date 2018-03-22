@@ -8,7 +8,6 @@ const eslint = require( 'gulp-eslint' );
 const fs = require( 'fs' );
 const gulp = require( 'gulp' );
 const gutil = require( 'gulp-util' );
-const imagemin = require( 'gulp-imagemin' );
 const mqpacker = require( 'css-mqpacker' );
 const notify = require( 'gulp-notify' );
 const plumber = require( 'gulp-plumber' );
@@ -20,15 +19,11 @@ const sassdoc = require( 'sassdoc' );
 const sassLint = require( 'gulp-sass-lint' );
 const sort = require( 'gulp-sort' );
 const sourcemaps = require( 'gulp-sourcemaps' );
-const svgmin = require( 'gulp-svgmin' );
-const svgstore = require( 'gulp-svgstore' );
 const uglify = require( 'gulp-uglify' );
 
 // Set assets paths.
 const paths = {
 	'css': [ './*.css', '!*.min.css' ],
-	'icons': 'assets/images/svg-icons/*.svg',
-	'images': [ 'assets/images/*', '!assets/images/*.svg' ],
 	'php': [ './*.php', './**/*.php' ],
 	'sass': 'src/sass/**/*.scss',
 	'concat_scripts': 'src/scripts/concat/*.js',
@@ -115,67 +110,6 @@ gulp.task( 'cssnano', [ 'postcss' ], () =>
 		.pipe( rename( 'style.min.css' ) )
 		.pipe( gulp.dest( './' ) )
 		.pipe( browserSync.stream() )
-);
-
-/**
- * Delete the svg-icons.svg before we minify, concat.
- */
-gulp.task( 'clean:icons', () =>
-	del( [ 'assets/images/svg-icons.svg' ] )
-);
-
-/**
- * Minify, concatenate, and clean SVG icons.
- *
- * https://www.npmjs.com/package/gulp-svgmin
- * https://www.npmjs.com/package/gulp-svgstore
- * https://www.npmjs.com/package/gulp-cheerio
- */
-gulp.task( 'svg', [ 'clean:icons' ], () =>
-	gulp.src( paths.icons )
-
-		// Deal with errors.
-		.pipe( plumber( {'errorHandler': handleErrors} ) )
-
-		// Minify SVGs.
-		.pipe( svgmin() )
-
-		// Add a prefix to SVG IDs.
-		.pipe( rename( {'prefix': 'icon-'} ) )
-
-		// Combine all SVGs into a single <symbol>
-		.pipe( svgstore( {'inlineSvg': true} ) )
-
-		// Clean up the <symbol> by removing the following cruft...
-		.pipe( cheerio( {
-			'run': function( $, file ) {
-				$( 'svg' ).attr( 'style', 'display:none' );
-				$( '[fill]' ).removeAttr( 'fill' );
-				$( 'path' ).removeAttr( 'class' );
-				$( 'title' ).remove();
-			},
-			'parserOptions': {'xmlMode': true}
-		} ) )
-
-		// Save svg-icons.svg.
-		.pipe( gulp.dest( 'assets/images/' ) )
-		.pipe( browserSync.stream() )
-);
-
-/**
- * Optimize images.
- *
- * https://www.npmjs.com/package/gulp-imagemin
- */
-gulp.task( 'imagemin', () =>
-	gulp.src( paths.images )
-		.pipe( plumber( {'errorHandler': handleErrors} ) )
-		.pipe( imagemin( {
-			'optimizationLevel': 5,
-			'progressive': true,
-			'interlaced': true
-		} ) )
-		.pipe( gulp.dest( 'assets/images' ) )
 );
 
 /**
@@ -289,7 +223,6 @@ gulp.task( 'watch', function() {
 	} );
 
 	// Run tasks when files change.
-	gulp.watch( paths.icons, [ 'icons' ] );
 	gulp.watch( paths.sass, [ 'styles' ] );
 	gulp.watch( paths.scripts, [ 'scripts' ] );
 	gulp.watch( paths.concat_scripts, [ 'scripts' ] );
@@ -300,9 +233,8 @@ gulp.task( 'watch', function() {
  * Create individual tasks.
  */
 gulp.task( 'markup', browserSync.reload );
-gulp.task( 'icons', [ 'svg' ] );
 gulp.task( 'scripts', [ 'uglify' ] );
 gulp.task( 'styles', [ 'cssnano' ] );
 gulp.task( 'lint', [ 'sass:lint', 'js:lint' ] );
 gulp.task( 'docs', [ 'sassdoc' ] );
-gulp.task( 'default', [ 'icons', 'styles', 'scripts', 'imagemin' ] );
+gulp.task( 'default', [ 'styles', 'scripts' ] );
