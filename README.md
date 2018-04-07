@@ -1,6 +1,8 @@
 # Basis
 
-Hello! Basis is basically Automattic's Underscores starter theme with Sass, Bootstrap, and a gulp build process integrated.
+Hello! Basis is basically Automattic's Underscores starter theme with Sass, Bootstrap, a gulp build process integrated, plus several nice to haves:
+
+-		SVG Support for media library, including thumbnails
 
 ## Getting Started
 
