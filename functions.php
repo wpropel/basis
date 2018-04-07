@@ -123,13 +123,13 @@ function basis_scripts() {
 
 	$version = '1.0.0';
 
-	wp_enqueue_style( '_s-style', get_stylesheet_directory_uri() . '/style.min.css', array(), $version );
+	wp_enqueue_style( '_basis-style', get_stylesheet_directory_uri() . '/style.min.css', array(), $version );
 
-	wp_enqueue_script( '_s-scripts-project', get_template_directory_uri() . '/assets/scripts/project.min.js', array( 'jquery' ), $version, true );
+	wp_enqueue_script( '_basis-scripts-project', get_template_directory_uri() . '/assets/scripts/project.min.js', array( 'jquery' ), $version, true );
 
-	wp_enqueue_script( '_s-scripts-popper', get_template_directory_uri() . '/assets/scripts/vendor/popper.min.js', array( 'jquery' ), $version, true );
+	wp_enqueue_script( '_basis-scripts-popper', get_template_directory_uri() . '/assets/scripts/vendor/popper.min.js', array( 'jquery' ), $version, true );
 
-	wp_enqueue_script( '_s-scripts-bootstrap', get_template_directory_uri() . '/assets/scripts/vendor/bootstrap.min.js', array( 'jquery' ), $version, true );
+	wp_enqueue_script( '_basis-scripts-bootstrap', get_template_directory_uri() . '/assets/scripts/vendor/bootstrap.min.js', array( 'jquery' ), $version, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -156,6 +156,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * SVG Support.
+ */
+require get_template_directory() . '/inc/svg.php';
 
 /**
  * Load Jetpack compatibility file.
