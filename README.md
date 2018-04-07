@@ -24,17 +24,21 @@ All source files should be stored under /src.
 
 #### SASS
 
+Of course you are free to modify this anyway you want, but here is a simple proposed layout for the SASS structure.
+
 `-vendor					Store your third-party style sheets here`
 
 `--bootstrap			Bootstrap`
 
 `--fontawesome		Fontawesome`
 
-`-views					Your theme's style sheets`
+`-views						Your theme's style sheets`
 
---elements			individual and reusable styles
+`--elements				individual and reusable styles`
 
---templates     template specific styles
+`--templates     	template specific styles`
+
+`style.scss				brings it all together`
 
 
 Start by installing the packages:
