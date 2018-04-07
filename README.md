@@ -51,10 +51,10 @@ Basis uses gulp. You are obviously free to use your own desktop build tools, but
 
 The Gulp process includes
 
--SCSS Linting and minification with integrated sourcemaps.
--JS Linting and minification with integrated sourcemaps.
--Autoprefixer for CSS.
--BrowserSync for real-time style update injection and automated browser reload on template file changes.
+- SCSS Linting and minification with integrated sourcemaps.
+- JS Linting and minification with integrated sourcemaps.
+- Autoprefixer for CSS.
+- BrowserSync for real-time style update injection and automated browser reload on template file changes.
 
 Step one: know npm and Gulp. We're not going to cover how to install the dependencies here but a little googling will get you up and running FAST.
 
