@@ -24,10 +24,10 @@ All source files should be stored under /src.
 
 #### SASS
 
--vendor					Store your third-party style sheets here
---bootstrap			Bootstrap
---fontawesome		Fontawesome
--views					Your theme's style sheets
+`-vendor					Store your third-party style sheets here`
+`--bootstrap			Bootstrap`
+`--fontawesome		Fontawesome`
+`-views					Your theme's style sheets`
 --elements			individual and reusable styles
 --templates     template specific styles
 
