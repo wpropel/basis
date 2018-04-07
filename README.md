@@ -18,6 +18,19 @@ Copy the files to a theme folder of your choosing.  Now let's do some searching 
 
 ## Build Process
 
+### The Layout
+
+All source files should be stored under /src.
+
+#### SASS
+
+-vendor					Store your third-party style sheets here
+--bootstrap			Bootstrap
+--fontawesome		Fontawesome
+-views					Your theme's style sheets
+--elements			individual and reusable styles
+--templates     template specific styles
+
 Start by installing the packages:
 
     npm -install
