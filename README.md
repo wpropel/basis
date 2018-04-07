@@ -16,11 +16,11 @@ Copy the files to a theme folder of your choosing.  Now let's do some searching 
 -   Search for  `basis.dv`  and replace with:  `project-name.dev`  to match your local development URL
 -   Edit the theme information in the header of style.scss to meet your needs
 
-## Build Process
+## The Asset Layout
 
-### The Layout
+All source files should be stored under /src. The build files produced will go to the appropriate places with the main stylesheet and minified version going to template root and JS going to assets/scripts.
 
-All source files should be stored under /src.
+There is currently no build process for admin styles, so we recommend you make those manually under assets/css/admin.
 
 #### SASS
 
@@ -40,16 +40,38 @@ Of course you are free to modify this anyway you want, but here is a simple prop
 
 `style.scss`          brings it all together
 
-### JavaScript
+#### JavaScript
 
 `-scripts` Anything under scripts and not in the concat subfolder will be minified as an individual file using the names you provide.
 `--concat` Anything stored in here will be combined into project.min.js
 
+## Build Process
 
-Start by installing the packages:
+Basis uses gulp. You are obviously free to use your own desktop build tools, but note that Gulp provides a consistent build process for multiple developers distributed across multiple OS's. We highly recommend you utilize gulp for development and Basis is not tested with other environments.
 
-    npm -install
+The Gulp process includes
 
-Your sass and JS should go in the assets/ folder.  
+-		SCSS Linting and minification with integrated sourcemaps.
+-		JS Linting and minification with integrated sourcemaps.
+-   Autoprefixer for CSS.
+-   BrowserSync for real-time style update injection and automated browser reload on template file changes.
 
-For JS, anything in the scripts/concat/ folder will be combined into project.js and project.min.js.  Anything in the scripts/ folder will be linted and minimized.
+Step one: know npm and Gulp. We're not going to cover how to install the dependencies here but a little googling will get you up and running FAST.
+
+Start by installing the packages.  Go to the template root and type:
+
+`npm -install`
+
+Once that process is finished, open Gulpfile.js in your code editor and find the following line:
+
+`'proxy': 'basis.dev'`
+
+Change 'basis.dev' to the url for your local development environment and save.
+
+### Getting the Build Running
+
+You start the build by typing the following from the template root folder in your command line:
+
+`gulp watch`
+
+Assuming there are no errors, your changes should be picked up and integrated into the build in real time.
