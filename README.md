@@ -26,19 +26,24 @@ All source files should be stored under /src.
 
 Of course you are free to modify this anyway you want, but here is a simple proposed layout for the SASS structure.
 
-`-vendor`					Store your third-party style sheets here
+`-vendor`             Store your third-party style sheets here
 
-`--bootstrap`			Bootstrap
+`--bootstrap`         Bootstrap
 
-`--fontawesome`		Fontawesome
+`--fontawesome`       Fontawesome
 
-`-views`						Your theme's style sheets
+`-views`              Your theme's style sheets
 
-`--elements`				individual and reusable styles
+`--elements`          individual and reusable styles
 
-`--templates`     	template specific styles
+`--templates`         template specific styles
 
-`style.scss`				brings it all together
+`style.scss`          brings it all together
+
+### JavaScript
+
+`-scripts` Anything under scripts and not in the concat subfolder will be minified as an individual file using the names you provide.
+`--concat` Anything stored in here will be combined into project.min.js
 
 
 Start by installing the packages:
