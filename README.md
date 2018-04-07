@@ -47,7 +47,7 @@ Of course you are free to modify this anyway you want, but here is a simple prop
 
 ## Build Process
 
-Basis uses gulp. You are obviously free to use your own desktop build tools, but note that Gulp provides a consistent build process for multiple developers distributed across multiple OS's. We highly recommend you utilize gulp for development and Basis is not tested with other environments.
+Basis is intended to use gulp as its primary build tool. You are obviously free to use your own desktop build tools, but note that Gulp provides a consistent build process for multiple developers distributed across multiple OS's. We highly recommend you utilize gulp for development and Basis is not tested with other environments.
 
 The Gulp process includes
 
